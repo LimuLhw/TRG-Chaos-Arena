@@ -1,0 +1,4 @@
+{
+  "event": "org.bukkit.event.inventory.InventoryClickEvent",
+  "sync": true
+}

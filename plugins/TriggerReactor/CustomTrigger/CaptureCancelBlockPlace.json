@@ -1,0 +1,4 @@
+{
+  "event": "onBlockPlace",
+  "sync": true
+}

@@ -1,0 +1,4 @@
+{
+  "Sync": false,
+  "event": "org.bukkit.event.player.PlayerMoveEvent"
+}
