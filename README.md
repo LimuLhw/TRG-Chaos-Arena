@@ -16,3 +16,4 @@ TriggerReactor 설치: https://github.com/TriggerReactor/TriggerReactor/releases
 * 정식 버전 사용을 권장합니다.
 * 자바 16 이상 또는 1.17이상의 서버인 경우: https://www.spigotmc.org/resources/jshader.93342/ 추가 설치가 필요합니다.
 
+해당 코드 사용은 자유입니다. 단, 상업용 목적은 X.
