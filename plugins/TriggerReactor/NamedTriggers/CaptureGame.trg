@@ -140,7 +140,13 @@ FOR l=0:totallist.size()
 ENDFOR
 
 {?"capturebattle.inGame"} = true
-capturecount = random(30,51)
+//스코어 발판 관련 코드
+FOR i = 0:3
+#CALL "captureScorealert" false
+ENDFOR
+/////
+
+//카운트다운 지정
 scorecount = 10
 notifycount = 30
 
@@ -195,8 +201,9 @@ WHILE {?"capturebattle.inGame"} == true
 		{?"capturebattle.inGame"} = false
 	ENDIF	
 	
-	//스코어 발판 카운트. 30초에서 50초 사이에 랜덤으로 생성
-	// 디버깅용 : #MESSAGE capturecount
+	
+	//BScore = 매 10초마다 점령한 곳 만큼 점수 +1
+	//Score = 30초마다 현재 점령전 점수 현황 출력
 	IF scorecount <= 0
 		#CALL "CaptureBScore"
 		scorecount = 10
@@ -206,13 +213,8 @@ WHILE {?"capturebattle.inGame"} == true
 		#CALL "captureScore"
 		notifycount = 30
 	ENDIF
-	
-	IF capturecount <= 0
-		#CALL "captureScorealert"
-		capturecount = random(30,51)
-	ENDIF
-	#WAIT 1
-	capturecount -= 1
+
+	#WAIT 1 
 	scorecount -= 1
 	notifycount -= 1
 
@@ -390,8 +392,6 @@ FOR p = getPlayers()
 		{?p.getName()+".CaptureScore"} = null
 		{?p.getName()+".CaptureProcess"} = null
 		p.sendMessage("§c§l│ §f§l점령전 §9§l│§f 게임이 종료 되어 "+lobbyWaitSec+"초 후 스폰으로 돌아갑니다..")
-		
-		
 		p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR)
 	ENDIF
 ENDFOR
@@ -403,10 +403,7 @@ ENDIF
 FOR p = getPlayers()
 	{?p.getName()+".captureTeam"} = null
 	IF {?"CaptureDebug"} == true && p.isOp() == true
-		p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR)
 	ELSEIF p.getWorld().getName() == "CaptureGame"
-		p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR)
-		p.getInventory().clear()
 		IF {"capturebattle.LobbyLoc"} !=null
 		SYNC
 			p.teleport({"capturebattle.LobbyLoc"})

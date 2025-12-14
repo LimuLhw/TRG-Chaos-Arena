@@ -3,7 +3,7 @@
 //By. Limu_lhw 이리무
 
 //게임 버전. 개발자 외 수정 금지.
-ver = "9.6"
+ver = "9.7"
 
 //prefix name. (onCommand)
 prefixname = "§c§l│ §f§l점령전 §9§l│§f "
@@ -662,7 +662,16 @@ ENDIF
 /////////////////////////////
 IF args[0] == "관전"
 	IF {?"CaptureDebug"} == true && $haspermission:"Capturegame.Admin" == true
+		SYNC
+			player.teleport(location("CaptureGame",-71.5, 78, -136.5, -0.9, 20.5)); //BlueBase
+			IF $isop == false
+			#SETGAMEMODE "SPECTATOR"
+			ENDIF 
+		ENDSYNC
+		#MESSAGE prefixname+" 관전 모드로 진행됩니다...."
 	ELSE
+		#message prefixname+" 지금은 관전을 할 수 없습니다."
+		#stop
 		IF {?"capturebattle.inGame"} != true
 			#MESSAGE erralert
 			#MESSAGE "&c현재 게임 진행중이 아닙니다."
@@ -676,13 +685,13 @@ IF args[0] == "관전"
 			#MESSAGE "&c게임 월드에서 바로 관전 할 수 없습니다."
 			#STOP 
 		ENDIF
-		SYNC
-			player.teleport(location("CaptureGame",-71.5, 78, -136.5, -0.9, 20.5)); //BlueBase
-			IF $isop == false
-			#SETGAMEMODE "SPECTATOR"
-			ENDIF 
-		ENDSYNC
-		#MESSAGE prefixname+" 관전 모드로 진행됩니다...."
+	SYNC
+		player.teleport(location("CaptureGame",-71.5, 78, -136.5, -0.9, 20.5)); //BlueBase
+		IF $isop == false
+		#SETGAMEMODE "SPECTATOR"
+		ENDIF
+	ENDSYNC
+	#MESSAGE prefixname+" 관전 모드로 진행됩니다...."	
 	ENDIF
 	#STOP
 ENDIF

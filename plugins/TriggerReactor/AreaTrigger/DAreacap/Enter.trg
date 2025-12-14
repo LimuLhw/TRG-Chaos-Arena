@@ -48,12 +48,20 @@ IF {?"capturebattle.inGame"} == true
 		ENDIF
 		
 	ENDIF
-	
+	//#MESSAGE "통과 1"
 ELSE
 	#STOP
 ENDIF
 
 WHILE {?"capturebattle.inGame"} == true
+	//IF {?"CaptureDebug"} == true
+	//SYNC
+	//#MESSAGE "Capturerer: "+{?"capturebattle.TeamBlue.inDArea.Capturerer"}+" : "+ {?"capturebattle.TeamRed.inDArea.Capturerer"} 
+	//#MESSAGE "Capture Gage: "+{?"capturebattle.DArea.bluehealth"}+" : "+{?"capturebattle.DArea.redhealth"} 
+	//#MESSAGE "Currently Capture Team : "+{?"capturebattle.DArea.Team"} 
+	//#MESSAGE "isinArea? : "+{?player.getName()+".CaptureProcess"}
+	//ENDSYNC
+	//ENDIF
 	IF currentArea(player) == null 
 		IF {?"capturebattle.TeamBlue.inDArea.Capturerer"} == player.getName()
 			{?"capturebattle.TeamBlue.inDArea.Capturerer"} = "uncaptured"
